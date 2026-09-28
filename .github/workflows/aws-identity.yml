@@ -8,10 +8,28 @@ permissions:
   contents: read
 
 jobs:
+
   identity:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Show OIDC claims
+        uses: actions/github-script@v8
+        with:
+          script: |
+            const token = await core.getIDToken('sts.amazonaws.com')
+            const payload = JSON.parse(
+              Buffer.from(token.split('.')[1], 'base64url').toString()
+            )
+            console.log(JSON.stringify({
+              sub: payload.sub,
+              aud: payload.aud,
+              repository: payload.repository,
+              repository_id: payload.repository_id,
+              repository_owner: payload.repository_owner,
+              repository_owner_id: payload.repository_owner_id
+            }, null, 2))
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v5
         with:
