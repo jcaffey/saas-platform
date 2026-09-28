@@ -80,6 +80,17 @@ resource "aws_iam_role_policy" "github_terraform_state" {
         ]
 
         Resource = "arn:aws:s3:::saas-platform-tfstate-1234/dev/terraform.tfstate"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject",
+          "s3:DeleteObject"
+        ]
+
+        Resource = "arn:aws:s3:::saas-platform-tfstate-1234/dev/terraform.tfstate.tflock"
       }
     ]
   })
