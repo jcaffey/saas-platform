@@ -26,7 +26,9 @@ defmodule App.MixProject do
       {:ex_aws, "~> 2.5"},
       {:ex_aws_sqs, "~> 3.4"},
       {:jason, "~> 1.4"},
-      {:saxy, "~> 1.1"}
+      {:saxy, "~> 1.1"},
+      {:plug, "~> 1.18"},
+      {:bandit, "~> 1.10"}
     ]
   end
 end

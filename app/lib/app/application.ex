@@ -12,7 +12,9 @@ defmodule App.Application do
 
       {App.SqsWorker,
        queue_url:
-         "https://sqs.us-east-1.amazonaws.com/388260576957/saas-platform-dev-jobs"}
+         "https://sqs.us-east-1.amazonaws.com/388260576957/saas-platform-dev-jobs"},
+
+      {Bandit, plug: App.Http, port: 4000}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
