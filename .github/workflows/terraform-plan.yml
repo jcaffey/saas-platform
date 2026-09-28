@@ -3,7 +3,7 @@ name: Terraform Plan
 on:
   pull_request:
     paths:
-      - "terraform/**"
+      - "infra/terraform/**"
 
 permissions:
   id-token: write
