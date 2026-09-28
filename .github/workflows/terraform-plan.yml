@@ -4,6 +4,7 @@ on:
   pull_request:
     paths:
       - "infra/terraform/**"
+      - ".github/workflows/terraform-plan.yml"
 
 permissions:
   id-token: write
@@ -15,7 +16,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: terraform
+        working-directory: infra/terraform
 
     steps:
       - name: Checkout
