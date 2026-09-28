@@ -53,3 +53,34 @@ resource "aws_iam_role_policy_attachment" "github_deploy" {
   role       = aws_iam_role.github_deploy.name
   policy_arn = each.value
 }
+
+resource "aws_iam_role_policy" "github_terraform_state" {
+  name = "terraform-state-access"
+  role = aws_iam_role.github_deploy.id
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:ListBucket"
+        ]
+
+        Resource = "arn:aws:s3:::saas-platform-tfstate-1234"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:GetObject",
+          "s3:PutObject"
+        ]
+
+        Resource = "arn:aws:s3:::saas-platform-tfstate-1234/dev/terraform.tfstate"
+      }
+    ]
+  })
+}

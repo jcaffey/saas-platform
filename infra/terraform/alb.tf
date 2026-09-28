@@ -4,7 +4,6 @@ resource "aws_security_group" "alb" {
   vpc_id      = aws_vpc.main.id
 
   tags = {
-    DeleteMe    = "true"
     Name        = "saas-platform-dev-alb"
     Environment = "dev"
     Service     = "saas-platform"
