@@ -49,7 +49,6 @@ resource "aws_lb" "app" {
   ]
 
   tags = {
-    DeleteMe    = "true"
     Environment = "dev"
     Service     = "saas-platform"
   }
