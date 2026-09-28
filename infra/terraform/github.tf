@@ -27,7 +27,7 @@ resource "aws_iam_role" "github_deploy" {
         }
 
         StringLike = {
-          "token.actions.githubusercontent.com:sub" = "repo:jcaffey/saas-platform:*"
+          "token.actions.githubusercontent.com:sub" = "repo:jcaffey@599927/saas-platform@1393766225:*"
         }
       }
     }]
