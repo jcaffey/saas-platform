@@ -91,6 +91,16 @@ resource "aws_iam_role_policy" "github_terraform_state" {
         ]
 
         Resource = "arn:aws:s3:::saas-platform-tfstate-1234/dev/terraform.tfstate.tflock"
+      },
+      {
+        Effect = "Allow"
+
+        Action = [
+          "iam:GetOpenIDConnectProvider",
+          "iam:GetRole"
+        ]
+
+        Resource = "*"
       }
     ]
   })
