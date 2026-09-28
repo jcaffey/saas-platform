@@ -96,8 +96,14 @@ resource "aws_iam_role_policy" "github_terraform_state" {
         Effect = "Allow"
 
         Action = [
-          "iam:GetOpenIDConnectProvider",
-          "iam:GetRole"
+          "iam:GetRole",
+          "iam:GetRolePolicy",
+          "iam:ListRolePolicies",
+          "iam:ListAttachedRolePolicies",
+          "iam:GetPolicy",
+          "iam:GetPolicyVersion",
+          "iam:ListPolicyVersions",
+          "iam:GetOpenIDConnectProvider"
         ]
 
         Resource = "*"
