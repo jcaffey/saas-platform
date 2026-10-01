@@ -35,6 +35,16 @@ resource "aws_vpc_security_group_ingress_rule" "database_from_app" {
   ip_protocol = "tcp"
 }
 
+resource "aws_vpc_security_group_ingress_rule" "database_from_tailscale" {
+  security_group_id = aws_security_group.database.id
+
+  referenced_security_group_id = aws_security_group.tailscale_router.id
+
+  from_port   = 5432
+  to_port     = 5432
+  ip_protocol = "tcp"
+}
+
 resource "aws_rds_cluster" "main" {
   cluster_identifier = "saas-platform-dev"
 
@@ -73,4 +83,8 @@ resource "aws_rds_cluster_instance" "main" {
   engine_version = aws_rds_cluster.main.engine_version
 
   publicly_accessible = false
+}
+
+output "aurora_endpoint" {
+  value = aws_rds_cluster.main.endpoint
 }

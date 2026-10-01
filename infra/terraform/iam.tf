@@ -59,3 +59,29 @@ resource "aws_iam_role_policy" "app_sqs" {
     }]
   })
 }
+
+resource "aws_iam_policy" "app_uploads" {
+  name = "saas-platform-dev-app-uploads"
+
+  policy = jsonencode({
+    Version = "2012-10-17"
+
+    Statement = [
+      {
+        Effect = "Allow"
+
+        Action = [
+          "s3:PutObject"
+        ]
+
+        Resource = "${aws_s3_bucket.uploads.arn}/uploads/*"
+      }
+    ]
+  })
+}
+
+
+resource "aws_iam_role_policy_attachment" "ecs_task_uploads" {
+  role       = aws_iam_role.app_task.name
+  policy_arn = aws_iam_policy.app_uploads.arn
+}
