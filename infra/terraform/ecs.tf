@@ -10,6 +10,8 @@ resource "aws_ecs_cluster" "main" {
 resource "aws_ecr_repository" "app" {
   name = "saas-platform-dev-app"
 
+  force_delete = true
+
   image_scanning_configuration {
     scan_on_push = true
   }
